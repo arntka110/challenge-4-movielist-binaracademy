@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Spinner, Container } from "react-bootstrap";
-import NavBar from "../Components/Header/Header";
 import Jumbotron from "../Components/DetailsMovie.jsx/Jumbotron";
 
 function DetailsMovies() {
@@ -15,7 +14,6 @@ function DetailsMovies() {
 
   useEffect(() => {
     const getDetailsMovies = async () => {
-      const params = { page: 1 };
       try {
         const response = await axios.get(
           `${
@@ -26,7 +24,12 @@ function DetailsMovies() {
               Authorization: `Bearer ${import.meta.env.VITE_API_AUTH_TOKEN}`,
             },
           },
-          { params }
+          {
+            params: {
+              language: "en-US",
+              append_to_response: "videos",
+            },
+          }
         );
         const { data } = response;
 
@@ -70,7 +73,6 @@ function DetailsMovies() {
 
   return (
     <>
-      <NavBar />
       <Container fluid="0">
         {detailsMovies.map((movie) => (
           <>
@@ -86,6 +88,8 @@ function DetailsMovies() {
               ))}
               overview={movie?.overview}
               vote_average={movie?.vote_average}
+              release_date={movie?.release_date}
+              trailerKey={movie?.videos?.results[0]?.key}
             />
           </>
         ))}

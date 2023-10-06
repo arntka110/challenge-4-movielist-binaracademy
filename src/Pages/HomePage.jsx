@@ -1,15 +1,15 @@
-import Header from "../Components/Header/Header";
 import HeroSlider from "../Components/Home-1/HeroSlider";
-// import Footer from "../Components/Footer/Footer";
 import PopularMovie from "./PopularMovie";
+import TopRatedMovies from "./TopRatedMovies";
+import UpComingMovies from "./UpComingMovies";
 
 function HomePage() {
   return (
     <>
-      <Header />
       <HeroSlider />
       <PopularMovie />
-      {/* <Footer /> */}
+      <TopRatedMovies />
+      <UpComingMovies />
     </>
   );
 }

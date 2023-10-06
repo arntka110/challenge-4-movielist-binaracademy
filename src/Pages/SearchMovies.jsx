@@ -1,9 +1,9 @@
+/* eslint-disable react/no-unescaped-entities */
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
-import { Container, Row, Col, Spinner } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import HeroCard from "../Components/Home-2/HeroCard";
-import Header from "../Components/Header/Header";
 
 const SearchMovies = () => {
   // Create state for movies that have been searched
@@ -66,28 +66,18 @@ const SearchMovies = () => {
   if (movies.length === 0) {
     return (
       <div className="d-flex flex-row justify-content-center align-items-center vh-100">
-        <Spinner animation="border" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </Spinner>
+        <h1>Result not found for "{searchParams.get("query")}"</h1>
       </div>
     );
   }
 
-  const handleSearchMovies = (searchText) => {
-    const filteredMovies = movies.filter((movie) =>
-      movie.title.toLowerCase().includes(searchText.toLowerCase())
-    );
-    setMovies(filteredMovies);
-  };
-
   // Foreach or map every object of movies array
   return (
     <>
-      <Header onSearch={handleSearchMovies} />
-      <Container fluid className="p-3">
+      <Container fluid className="p-3" style={{ marginTop: "80px" }}>
         <Row>
           <Col>
-            <h3 style={{ fontWeight: 800 }}>Search Result:</h3>
+            <h3>Search Result for "{searchParams.get("query")}"</h3>
           </Col>
         </Row>
         <Row>

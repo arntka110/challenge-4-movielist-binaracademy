@@ -19,6 +19,7 @@ function HeroSlider() {
   });
   const [showTrailer, setShowTrailer] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState(null);
+  const [trailerKey, setTrailerKey] = useState(null);
 
   useEffect(() => {
     const getNowPlayingMovies = async () => {
@@ -59,9 +60,30 @@ function HeroSlider() {
     getNowPlayingMovies();
   }, [errors]);
 
-  const openTrailerModal = (movie) => {
+  const openTrailerModal = async (movie) => {
     setSelectedMovie(movie);
-    setShowTrailer(true);
+
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_BASE_URL}/3/movie/${movie.id}/videos`,
+        {
+          headers: {
+            Authorization: `Bearer ${import.meta.env.VITE_API_AUTH_TOKEN}`,
+          },
+        }
+      );
+      const { data } = response;
+
+      if (data.results.length > 0) {
+        setTrailerKey(data.results[0].key);
+        setShowTrailer(true);
+      } else {
+        setShowTrailer(false);
+      }
+    } catch (error) {
+      console.error(error);
+      setShowTrailer(false);
+    }
   };
 
   const closeTrailerModal = () => {
@@ -97,10 +119,10 @@ function HeroSlider() {
                   style={{ width: "100%" }}
                 />
               </div>
-              <Carousel.Caption>
+              <Carousel.Caption className="p-0">
                 <div className={styles["content"]}>
-                  <h1 style={{ fontWeight: "800" }}>{movie.title}</h1>
-                  <p style={{ fontSize: "14px" }}>{movie.overview}</p>
+                  <h1>{movie.title}</h1>
+                  <p>{movie.overview}</p>
                   <Button
                     variant="danger"
                     className="rounded-pill"
@@ -123,17 +145,13 @@ function HeroSlider() {
             <iframe
               width="100%"
               height="315"
-              // src={import.meta.env.VITE_API_BASE_URL + selectedMovie?.video}
+              src={`https://www.youtube.com/embed/${trailerKey}`}
               frameBorder="0"
               allowFullScreen
               title="Movie Trailer"
             ></iframe>
           </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={closeTrailerModal}>
-              Close
-            </Button>
-          </Modal.Footer>
+          <Modal.Footer></Modal.Footer>
         </Modal>
       </Container>
     </>

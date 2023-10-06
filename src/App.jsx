@@ -4,11 +4,14 @@ import PopularMovie from "./Pages/PopularMovie";
 import AllMovies from "./Pages/AllMovies";
 import DetailsMovies from "./Pages/DetailsMovies";
 import SearchMovies from "./Pages/SearchMovies";
+import Header from "./Components/Header/Header";
+import Footer from "./Components/Footer/Footer";
 
 function App() {
   return (
     <>
       <BrowserRouter>
+        <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="popular-movie" element={<PopularMovie />} />
@@ -29,6 +32,7 @@ function App() {
             }
           />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </>
   );

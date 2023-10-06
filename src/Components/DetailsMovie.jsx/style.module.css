@@ -13,27 +13,50 @@
 }
 
 .content {
-    padding: 10px;
     color: white;
     position: absolute;
-    bottom: 100px;
-    left: 20px;
-    width: 50%;
+    top: 50%;
+    transform: translateY(-30%);
+    padding-right: 20px;
+    margin-left: 50px;
     text-align: justify;
+    width: 80%;
 }
 
+.content h1 {
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.content Button {
+    transition: .4s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
+    cursor: pointer;
+}
+
+.content Button:hover {
+    transform: scale(1.10);
+}
 
 @media (max-width: 767px) {
+    .img-backdrop {
+        margin-top: 60px;
+    }
+
     .content {
-        bottom: 60%;
+        top: 100px;
     }
 
     .content h1 {
-        font-size: 20px;
+        font-size: 14px;
+        font-weight: 800;
     }
 
     .content p {
         font-size: 12px;
+        width: 300px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
     .content Button {
@@ -42,22 +65,8 @@
     }
 }
 
-@media (min-width: 767px) {
+@media (max-width: 997px) {
     .content {
-        bottom: 15%;
-    }
-
-    .content h1 {
-        font-size: 38px;
-        font-weight: 800;
-    }
-
-    .content p {
-        font-size: 16px;
-    }
-
-    .content Button {
-        width: auto;
-        font-size: 22px;
+        top: 27%;
     }
 }

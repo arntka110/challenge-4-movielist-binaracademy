@@ -69,7 +69,7 @@ function AllMovies() {
 
   return (
     <>
-      <Container fluid className="p-3">
+      <Container fluid className="p-3" style={{ marginTop: "70px" }}>
         <Link to="/all-movie" style={{ textDecoration: "none", color: "red" }}>
           See All Movies {<BsArrowDown />}
         </Link>

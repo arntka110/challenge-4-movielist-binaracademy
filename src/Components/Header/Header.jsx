@@ -9,11 +9,24 @@ import {
 } from "react-bootstrap";
 import { BsSearch } from "react-icons/bs";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import styles from "./navbar.module.css";
 
 function Header() {
+  const [navbar, setNavbar] = useState(false);
   const [query, setQuery] = useState("");
+
   const navigate = useNavigate();
+
+  const changeBackground = () => {
+    if (window.scrollY >= 100) {
+      setNavbar(true);
+    } else {
+      setNavbar(false);
+    }
+  };
+
+  window.addEventListener("scroll", changeBackground);
 
   const handleSearch = (event) => {
     event.preventDefault();
@@ -22,15 +35,16 @@ function Header() {
 
   return (
     <>
-      <Navbar expand="md" className="bg-transparent mb-3" fixed="top">
+      <Navbar
+        expand="md"
+        className={navbar ? styles["navbar-active"] : styles["navbar"]}
+        fixed="top"
+      >
         <Container fluid>
           <Navbar.Brand href="/">
-            <h1 style={{ color: "red" }}>MOVIELIST</h1>
+            <h1 style={{ color: "red", fontWeight: "800" }}>MOVIELIST</h1>
           </Navbar.Brand>
-          <Navbar.Toggle
-            aria-controls={`offcanvasNavbar-expand`}
-            // className="bg-light"
-          />
+          <Navbar.Toggle aria-controls={`offcanvasNavbar-expand`} />
           <Navbar.Offcanvas
             id={`offcanvasNavbar-expand`}
             aria-labelledb
@@ -38,17 +52,22 @@ function Header() {
             placement="end"
           >
             <Offcanvas.Header closeButton>
-              <Offcanvas.Title id={`offcanvasNavbarLabel-expand`}>
-                <img src="../public/logo.png" alt="logo" width="100" />
+              <Offcanvas.Title
+                id={`offcanvasNavbarLabel-expand`}
+                as={Link}
+                to={"/"}
+                style={{
+                  textDecoration: "none",
+                  color: "red",
+                  fontWeight: "bold",
+                }}
+              >
+                <h1>MOVIELIST</h1>
               </Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="justify-content-center flex-grow-1">
-                <Form
-                  className="d-flex"
-                  style={{ width: "50%" }}
-                  onSubmit={handleSearch}
-                >
+                <Form onSubmit={handleSearch} style={{ width: "100%" }}>
                   <InputGroup>
                     <Form.Control
                       type="text"
@@ -56,16 +75,15 @@ function Header() {
                       placeholder="What do you want to watch?"
                       aria-label="search"
                       className="bg-transparent border-danger rounded-pill"
-                      style={{ color: "white" }}
                       onChange={(event) => setQuery(event.target.value)}
                     />
                     <Button
                       type="submit"
-                      variant="outline-danger"
-                      className="bg-transparent rounded-pill"
+                      className="bg-transparent border-0 rounded-pill"
+                      style={{ translate: -50 }}
                       onClick={handleSearch}
                     >
-                      <BsSearch />
+                      <BsSearch color="red" />
                     </Button>
                   </InputGroup>
                 </Form>
