@@ -1,0 +1,63 @@
+.img-backdrop {
+    position: relative;
+    z-index: -1;
+    border: none;
+}
+
+.img-backdrop:before {
+    content: '';
+    position: absolute;
+    background: rgba(0, 0, 0, 0.525);
+    width: 100%;
+    height: 100%;
+}
+
+.content {
+    padding: 10px;
+    color: white;
+    position: absolute;
+    bottom: 100px;
+    left: 20px;
+    width: 50%;
+    text-align: justify;
+}
+
+
+@media (max-width: 767px) {
+    .content {
+        bottom: 60%;
+    }
+
+    .content h1 {
+        font-size: 20px;
+    }
+
+    .content p {
+        font-size: 12px;
+    }
+
+    .content Button {
+        width: auto;
+        font-size: 10px;
+    }
+}
+
+@media (min-width: 767px) {
+    .content {
+        bottom: 15%;
+    }
+
+    .content h1 {
+        font-size: 38px;
+        font-weight: 800;
+    }
+
+    .content p {
+        font-size: 16px;
+    }
+
+    .content Button {
+        width: auto;
+        font-size: 22px;
+    }
+}
