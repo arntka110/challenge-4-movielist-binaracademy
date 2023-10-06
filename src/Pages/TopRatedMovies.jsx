@@ -106,9 +106,15 @@ function TopRatedMovies() {
       <Container fluid className="mt-5 border border-1">
         <Row>
           <Col>
-            <h2 style={{ fontWeight: 800, margin: "20px" }}>Top Rated Movies</h2>
+            <h2 style={{ fontWeight: 800, marginTop: "20px" }}>
+              Top Rated Movies
+            </h2>
           </Col>
-          <Col className="d-flex justify-content-end align-items-center">
+          <Col
+            xs={1}
+            md={2}
+            className="d-flex justify-content-end align-items-center"
+          >
             <Link
               to="/all-movie"
               style={{ textDecoration: "none", color: "red" }}

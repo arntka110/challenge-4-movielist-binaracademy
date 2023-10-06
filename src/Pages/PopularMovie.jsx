@@ -107,9 +107,15 @@ function PopularMovie() {
       <Container fluid className="mt-5">
         <Row>
           <Col>
-            <h2 style={{ fontWeight: 800 }}>Popular Movies</h2>
+            <h2 style={{ fontWeight: 800, marginTop: "50px" }}>
+              Popular Movies
+            </h2>
           </Col>
-          <Col className="d-flex justify-content-end align-items-center">
+          <Col
+            xs={1}
+            md={2}
+            className="d-flex justify-content-end align-items-center"
+          >
             <Link
               to="/all-movie"
               style={{ textDecoration: "none", color: "red" }}
