@@ -4,7 +4,7 @@ import axios from "axios";
 import OwlCarousel from "react-owl-carousel";
 import { Spinner, Container, Col, Row } from "react-bootstrap";
 import { BsArrowRight } from "react-icons/bs";
-import HeroCard from "../Components/Home-2/HeroCard";
+import MovieCard from "../Components/Home-2/MovieCard";
 
 function TopRatedMovies() {
   const [topRatedMovies, setTopRatedMovies] = useState([]);
@@ -18,7 +18,7 @@ function TopRatedMovies() {
     loop: true,
     autoplay: true,
     autoplayTimeout: 4000,
-    dots: true,
+    dots: false,
     nav: false,
     // navText: ["next", "prev"],
     controlsClass: "owl-controls",
@@ -130,7 +130,7 @@ function TopRatedMovies() {
           {...options}
         >
           {topRatedMovies.map((movie) => (
-            <HeroCard
+            <MovieCard
               key={movie.id}
               id={movie.id}
               imageURL={import.meta.env.VITE_API_IMG_URL + movie?.poster_path}

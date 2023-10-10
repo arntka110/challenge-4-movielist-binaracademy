@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import PropType from "prop-types";
 import { Container, Card } from "react-bootstrap";
-import styles from "./hero2.module.css";
+import styles from "./home2.module.css";
 
-function HeroCard({ id, title, imageURL }) {
+function MovieCard({ id, title, imageURL }) {
   return (
     <>
       <Container fluid="0" className="my-3">
@@ -19,10 +19,10 @@ function HeroCard({ id, title, imageURL }) {
   );
 }
 
-HeroCard.propTypes = {
+MovieCard.propTypes = {
   id: PropType.number.isRequired,
   title: PropType.string.isRequired,
   imageURL: PropType.string.isRequired,
 };
 
-export default HeroCard;
+export default MovieCard;

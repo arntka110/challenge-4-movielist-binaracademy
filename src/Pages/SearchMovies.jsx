@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
-import HeroCard from "../Components/Home-2/HeroCard";
+import MovieCard from "../Components/Home-2/MovieCard";
 
 const SearchMovies = () => {
   // Create state for movies that have been searched
@@ -83,7 +83,7 @@ const SearchMovies = () => {
         <Row>
           {movies.map((movie) => (
             <Col key={movie.id}>
-              <HeroCard
+              <MovieCard
                 id={movie.id}
                 imageURL={import.meta.env.VITE_API_IMG_URL + movie?.poster_path}
                 overview={movie?.overview}

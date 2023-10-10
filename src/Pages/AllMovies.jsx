@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { BsArrowDown } from "react-icons/bs";
 import { Spinner, Container, Row, Col } from "react-bootstrap";
-import HeroCard from "../Components/Home-2/HeroCard";
+import MovieCard from "../Components/Home-2/MovieCard";
 
 function AllMovies() {
   const [allMovies, setAllMovies] = useState([]);
@@ -76,7 +76,7 @@ function AllMovies() {
         <Row>
           {allMovies.map((movie) => (
             <Col key={movie.id}>
-              <HeroCard
+              <MovieCard
                 id={movie.id}
                 imageURL={import.meta.env.VITE_API_IMG_URL + movie?.poster_path}
               />
